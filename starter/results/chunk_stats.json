@@ -1,0 +1,33 @@
+{
+  "A": {
+    "chunks": 475,
+    "total_chars": 222330,
+    "len_min": 67,
+    "len_mean": 468.1,
+    "len_median": 500,
+    "len_max": 500,
+    "chunks_under_100_chars": 5,
+    "chunk_seconds": 0.001,
+    "embed_seconds": 4.395,
+    "store_seconds": 0.185,
+    "rows_after_first_ingest": 475,
+    "rows_after_reingest": 475
+  },
+  "B": {
+    "chunks": 355,
+    "total_chars": 201345,
+    "len_min": 75,
+    "len_mean": 567.2,
+    "len_median": 611,
+    "len_max": 800,
+    "chunks_under_100_chars": 2,
+    "chunk_seconds": 0.002,
+    "embed_seconds": 4.381,
+    "store_seconds": 0.127,
+    "rows_after_first_ingest": 355,
+    "rows_after_reingest": 355
+  },
+  "C": {
+    "note": "C dùng lại chỉ mục và chunk của B; chỉ thêm bộ lọc khi câu hỏi có filter."
+  }
+}

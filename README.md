@@ -45,3 +45,32 @@ Dùng cùng dữ liệu, model và câu hỏi cho cả ba cấu hình. Tách **1
 | Cách nộp bài | [SUBMISSION.md](SUBMISSION.md) |
 
 [data/format-example.json](data/format-example.json) chỉ minh họa định dạng, không phải corpus đủ điều kiện. Phần xử lý và benchmark do bạn tự hiện thực; không bắt buộc xây chatbot.
+
+---
+
+## Bài làm của học viên: cách cài và chạy lại
+
+Corpus: OpenStax *Introduction to Computer Science* (CC BY-NC-SA 4.0, chỉ dùng phi thương mại), Chương 1 và 3 (63 trang). File PDF (~56 MB) không nằm trong repo: tải tại <https://openstax.org/details/books/introduction-computer-science>, đặt tên `intro-cs.pdf` vào `starter/data/`. Nguồn, trang và quy tắc tính trang xem `starter/data/manifest.json`.
+
+Chạy từ thư mục `starter/` (Windows PowerShell; cần Docker Desktop đang chạy, Python 3.11–3.14):
+
+```powershell
+python -m pip install -r requirements.txt
+python -m pip install sentence-transformers==6.3.0   # embedding chạy trên máy, không cần API key
+Copy-Item .env.example .env
+docker compose -p day6_student_starter up -d --wait
+python scripts/check_setup.py                    # kỳ vọng: Setup OK
+python scripts/verify_benchmark.py               # kiểm chứng evidence và split của benchmark
+python -m src.run --splits dev                   # chỉ chạy dev
+python -m src.run                                # chạy dev + test (chỉ sau khi chốt câu hỏi)
+python scripts/make_audit_sheets.py              # tạo phiếu chấm thủ công trong starter/results/
+```
+
+- Benchmark: `benchmark/questions.json` (20 câu: 15 dev, 5 test; 5 câu có filter).
+- Kết quả: `starter/results/` (`traces.jsonl`, `summary.json`, `chunk_stats.json`, `run_config.json`, `ingestion_log.json`, các phiếu `audit_*.csv`).
+- Nhật ký thí nghiệm: `artifacts/experiment_log.csv`. Báo cáo: `report/individual/`.
+- Embedding: `sentence-transformers/all-MiniLM-L6-v2` (384 chiều), chi phí 0. Vector store: PostgreSQL 16 + pgvector 0.8.7, cosine, tìm chính xác.
+
+### Ghi nguồn và giấy phép dữ liệu
+Nội dung sách do OpenStax (Rice University) tạo ra, theo giấy phép **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0)**. **Access for free at openstax.org.** Nguồn: <https://openstax.org/details/books/introduction-computer-science>.
+Repo này chỉ dùng cho **mục đích học tập, phi thương mại**. Repo không chứa file PDF gốc; các trích đoạn ngắn nằm trong `benchmark/questions.json` (đoạn evidence) và `starter/results/` (nội dung chunk trong trace, phiếu chấm) là bản trích/chuyển thể từ sách (đã chuẩn hóa khoảng trắng, loại header/footer), được chia sẻ lại theo cùng giấy phép CC BY-NC-SA 4.0. Tên và logo OpenStax/Rice University không thuộc phạm vi giấy phép.

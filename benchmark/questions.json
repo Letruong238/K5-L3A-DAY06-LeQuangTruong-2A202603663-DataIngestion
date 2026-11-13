@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "description": "Benchmark 20 cau hoi (15 dev / 5 test) cho corpus OpenStax Introduction to Computer Science, Chapter 1 va Chapter 3.",
+    "language_of_questions": "en (cung ngon ngu voi corpus)",
+    "drafted_with": "Ban nhap do Claude Code soan tu noi dung sach; hoc vien phai doc lai va chiu trach nhiem ve evidence. Evidence duoc kiem chung bang starter/scripts/verify_benchmark.py.",
+    "split_rule": "Chia truoc khi chay thu nghiem: q01-q15 la dev, q16-q20 la test. Cac trang gold cua test khong trung voi trang gold cua dev (giam ro ri). Khong sua bo test sau khi xem ket qua.",
+    "filter_rule": "Truong loc la category (chapter_1 hoac chapter_3), lay tu manifest. Gia tri loc duoc coi la ngu canh nguoi dung cung cap truoc khi truy xuat, khong nam trong noi dung cau hoi va khong chua dap an. Cau khong co filter thi cau hinh C chay khong loc.",
+    "filter_scope_note": "Voi cau co filter, pham vi hop le la chuong duoc loc. Cac chuong khac co the co noi dung tuong tu (vi du binary search) nhung khong tinh la gold cho cau do.",
+    "config_selection_criteria": "Chon cau hinh tren dev theo thu tu: Evidence Hit@3, sau do Hit@1, sau do grounding thu cong, sau do tai nguyen (so chunk, thoi gian). Chot truoc khi xem test.",
+    "leakage_risks": "Dev va test cung nam trong hai chuong cua mot cuon sach nen chu de co the gan nhau (vi du binary search xuat hien o ca hai chuong). Cau q16/q17 la mot cap cung chu de nhung khac chuong de kiem tra filter."
+  },
+  "questions": [
+    {
+      "id": "q01", "split": "dev", "type": "truc_tiep",
+      "question": "How did George E. Forsythe define computer science?",
+      "expected_answer": "As the theory of programming, numerical analysis, data processing, and the design of computer systems.",
+      "gold_source_id": "ocs-ch1", "gold_page": 22,
+      "evidence_quote": "the theory of programming, numerical analysis, data processing, and the design of computer systems.",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q02", "split": "dev", "type": "truc_tiep",
+      "question": "In what year did Richard Bellman invent dynamic programming?",
+      "expected_answer": "1953",
+      "gold_source_id": "ocs-ch1", "gold_page": 22,
+      "evidence_quote": "In 1953, Bellman invented dynamic programming",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q03", "split": "dev", "type": "loc_metadata",
+      "question": "Why are almost all computers considered Turing-complete?",
+      "expected_answer": "Because they share the same fundamental model for computing results and every computer has the ability to run any algorithm.",
+      "gold_source_id": "ocs-ch1", "gold_page": 24,
+      "evidence_quote": "they share the same fundamental model for computing results and every computer has the ability to run any algorithm",
+      "filter": {"category": "chapter_1"}, "alternative_gold": []
+    },
+    {
+      "id": "q04", "split": "dev", "type": "truc_tiep",
+      "question": "What is human-computer interaction (HCI)?",
+      "expected_answer": "A subfield of computer science that emphasizes the social aspects of computation.",
+      "gold_source_id": "ocs-ch1", "gold_page": 25,
+      "evidence_quote": "human-computer interaction (HCI), a subfield of computer science that emphasizes the social aspects of computation",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q05", "split": "dev", "type": "dien_lai",
+      "question": "What does the term digital divide mean?",
+      "expected_answer": "The uneven and unequal access and distribution of technology across populations from different geographies, socioeconomic statuses, races, ethnicities, and other differentiators.",
+      "gold_source_id": "ocs-ch1", "gold_page": 27,
+      "evidence_quote": "The divide refers to the uneven and unequal access and distribution of technology across populations",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q06", "split": "dev", "type": "dieu_kien",
+      "question": "Why is computer science not usually classified as a natural science?",
+      "expected_answer": "Because it does not study natural objects, so it is considered an applied science rather than a natural science.",
+      "gold_source_id": "ocs-ch1", "gold_page": 32,
+      "evidence_quote": "Computer science does not study natural objects, so to most, it would not be considered a natural science but rather an applied science.",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q07", "split": "dev", "type": "dien_lai",
+      "question": "What shortsighted decision caused the Y2K problem?",
+      "expected_answer": "Storing only the last two digits of the year instead of four.",
+      "gold_source_id": "ocs-ch1", "gold_page": 36,
+      "evidence_quote": "shortsighted decisions that allowed computer scientists to only store the last two digits of the year instead of four",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q08", "split": "dev", "type": "loc_metadata",
+      "question": "How is an algorithm defined?",
+      "expected_answer": "A sequence of precise instructions that operate on data.",
+      "gold_source_id": "ocs-ch3", "gold_page": 100,
+      "evidence_quote": "An algorithm is a sequence of precise instructions that operate on data.",
+      "filter": {"category": "chapter_3"}, "alternative_gold": []
+    },
+    {
+      "id": "q09", "split": "dev", "type": "truc_tiep",
+      "question": "What is an array list?",
+      "expected_answer": "A data structure that stores list elements next to each other in memory.",
+      "gold_source_id": "ocs-ch3", "gold_page": 102,
+      "evidence_quote": "is a data structure that stores list elements next to each other in memory",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q10", "split": "dev", "type": "dieu_kien",
+      "question": "What can linked lists do faster than array lists?",
+      "expected_answer": "Insertion and deletion operations (but array lists allow faster random access).",
+      "gold_source_id": "ocs-ch3", "gold_page": 102,
+      "evidence_quote": "linked lists support fast insertion and deletion operations, which array lists do not",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q11", "split": "dev", "type": "dieu_kien",
+      "question": "Under what condition can a binary search tree rule out half of the remaining elements at each step?",
+      "expected_answer": "Only if the binary search tree is perfectly balanced.",
+      "gold_source_id": "ocs-ch3", "gold_page": 104,
+      "evidence_quote": "We can only rule out half of the remaining elements each time if the binary search tree is perfectly balanced",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q12", "split": "dev", "type": "truc_tiep",
+      "question": "What is an edge in a graph?",
+      "expected_answer": "The relationship between vertices or nodes.",
+      "gold_source_id": "ocs-ch3", "gold_page": 106,
+      "evidence_quote": "An edge is the relationship between vertices or nodes.",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q13", "split": "dev", "type": "dien_lai",
+      "question": "How does the worst-case runtime of sequential search grow with the number of words in the list?",
+      "expected_answer": "Linearly: its order of growth is O(N) in the worst case.",
+      "gold_source_id": "ocs-ch3", "gold_page": 118,
+      "evidence_quote": "In the worst case, the order of growth of sequential search is in O(N) with respect to N, the number of words in the list.",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q14", "split": "dev", "type": "dien_lai",
+      "question": "Which greedy algorithm uses a priority queue of vertices ordered by connecting edge weight?",
+      "expected_answer": "Prim's algorithm.",
+      "gold_source_id": "ocs-ch3", "gold_page": 125,
+      "evidence_quote": "Prim’s algorithm, a greedy algorithm that maintains a priority queue of vertices in the graph ordered by connecting edge weight.",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q15", "split": "dev", "type": "loc_metadata",
+      "question": "What is a Turing machine?",
+      "expected_answer": "An abstract model of computation for executing any computer algorithm.",
+      "gold_source_id": "ocs-ch3", "gold_page": 134,
+      "evidence_quote": "A Turing machine is an abstract model of computation for executing any computer algorithm.",
+      "filter": {"category": "chapter_3"}, "alternative_gold": []
+    },
+    {
+      "id": "q16", "split": "test", "type": "loc_metadata",
+      "question": "How does binary search locate a number?",
+      "expected_answer": "By repeatedly dividing the search interval in half until the number is found or the interval is empty.",
+      "gold_source_id": "ocs-ch1", "gold_page": 20,
+      "evidence_quote": "The algorithm operates by repeatedly dividing the search interval in half to perform the search.",
+      "filter": {"category": "chapter_1"}, "alternative_gold": []
+    },
+    {
+      "id": "q17", "split": "test", "type": "loc_metadata",
+      "question": "Which algorithm design pattern does binary search exemplify?",
+      "expected_answer": "Divide and conquer.",
+      "gold_source_id": "ocs-ch3", "gold_page": 121,
+      "evidence_quote": "binary search can also be understood as an example of a divide and conquer algorithm",
+      "filter": {"category": "chapter_3"}, "alternative_gold": []
+    },
+    {
+      "id": "q18", "split": "test", "type": "dieu_kien",
+      "question": "Why are collisions unavoidable when hashing objects to integer indexes?",
+      "expected_answer": "Because integers in a computer can only represent a certain, fixed range of values, so multiple objects must hash to the same index.",
+      "gold_source_id": "ocs-ch3", "gold_page": 130,
+      "evidence_quote": "is inevitable since integers in a computer can typically only represent a certain, fixed range of integer numbers",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q19", "split": "test", "type": "dien_lai",
+      "question": "How many visa numbers are in the annual H-1B pool, not counting the master's exemption?",
+      "expected_answer": "65,000 visa numbers.",
+      "gold_source_id": "ocs-ch1", "gold_page": 28,
+      "evidence_quote": "compete for a pool of 65,000 visa numbers",
+      "filter": null, "alternative_gold": []
+    },
+    {
+      "id": "q20", "split": "test", "type": "dien_lai",
+      "question": "What does experimental analysis of an algorithm measure?",
+      "expected_answer": "Its runtime, by recording how long it takes to run a program implementation of it.",
+      "gold_source_id": "ocs-ch3", "gold_page": 115,
+      "evidence_quote": "evaluates an algorithm’s runtime by recording how long it takes to run a program implementation of it",
+      "filter": null, "alternative_gold": []
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "run_at": "2026-11-13T18:30:52",
+  "splits_run": [
+    "dev",
+    "test"
+  ],
+  "embedding": {
+    "provider": "sentence-transformers (local, CPU)",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "dimensions": 384,
+    "normalized": true,
+    "query_vs_document": "cùng cách mã hoá, không dùng tiền tố"
+  },
+  "vector_store": {
+    "name": "PostgreSQL + pgvector",
+    "postgres": "16.16 (Debian 16.16-1.pgdg12+1)",
+    "pgvector": "0.8.7",
+    "metric": "cosine",
+    "search": "exact (không dùng index xấp xỉ)"
+  },
+  "strategies": {
+    "A": {
+      "chunking": "fixed_size",
+      "size": 500,
+      "overlap": 50,
+      "filter": false
+    },
+    "B": {
+      "chunking": "by_paragraph",
+      "max_size": 800,
+      "filter": false
+    },
+    "C": {
+      "chunking": "by_paragraph (dùng lại chỉ mục B)",
+      "max_size": 800,
+      "filter": true
+    }
+  },
+  "top_k": 3,
+  "cost_usd": 0,
+  "versions": {
+    "python": "3.13.15",
+    "os": "Windows-11-10.0.26200-SP0",
+    "sentence-transformers": "6.3.0",
+    "torch": "2.15.0",
+    "psycopg": "3.3.8",
+    "pypdf": "6.21.4",
+    "python-dotenv": "1.2.4"
+  },
+  "seed": "không cần (không có bước ngẫu nhiên)",
+  "mean_query_ms": {
+    "A": 24.82,
+    "B": 24.03,
+    "C": 23.68
+  }
+}
